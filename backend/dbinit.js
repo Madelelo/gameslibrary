@@ -1,5 +1,6 @@
 const db = require("./dbconnector");
 
+//CREATE DATABASE gameslibrary;
 async function createGamesTable() {
   const createGamesTable = `
     CREATE TABLE IF NOT EXISTS games (
