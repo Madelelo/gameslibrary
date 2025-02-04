@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maddes spillbibliotek</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="games-header">
+      <h1>Maddes spillbibliotek</h1>
+      <div id="game-counter"></div>
+
+      <div id="games-list"></div>
+
+      <div class="games-card">
+        <form action="">
+          <h1>Add new game</h1>
+          <div>
+            Game name:
+            <input type="text" id="new-game-name" placeholder="The game name" />
+          </div>
+          <div>
+            Game year:
+            <input type="number" id="new-game-year" placeholder="2024" />
+          </div>
+          <div>
+            Game type:
+            <input
+              type="text"
+              id="new-game-type"
+              placeholder="Adventure, platform"
+            />
+          </div>
+          <div>
+            Game console:
+            <input type="text" id="new-game-console" placeholder="Nintendo" />
+          </div>
+
+          <button onclick="addGame()">Add game</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
