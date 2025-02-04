@@ -17,6 +17,16 @@ router.get("/db", async (req, res) => {
   }
 });
 
+//Get list of games (names only)
+router.get("/nameOfGames", async (req, res) => {
+  try {
+    const nameOfGames = await db.query("SELECT name FROM games;");
+    res.send(nameOfGames);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
 //Get all games with all information
 router.get("/games", async (req, res) => {
   try {
@@ -30,6 +40,17 @@ router.get("/games", async (req, res) => {
 //Add new game to database
 router.post("/newGame", async (req, res) => {
   let newGame = req.body; //dataen fra nettleseren
+  //Dataen fra nettleseren:
+  // {
+  //   "name": "Scout!",
+  //   "releaseYear": 2022,
+  //   "gameCompany": "Oink Games",
+  //   "gameType": "Cardbased boardgame",
+  //   "gameConsole": ["Tabletop", "Travel"],
+  //   "maxPlayer": 6,
+  //   "minPlayer": 2
+  // }
+
   let query = `
   INSERT INTO games (name, releaseYear, gameType, gameCompany, gameConsole, maxPlayer, minPlayer) VALUES 
   ('${newGame.name}', ${newGame.releaseYear}, '${newGame.gameType}', '${newGame.gameType}', '${newGame.gameConsole}', ${newGame.maxPlayer}, ${newGame.minPlayer});
@@ -42,22 +63,5 @@ router.post("/newGame", async (req, res) => {
     res.send(error);
   }
 });
-
-// //Get list of games (names only)
-// router.get("/nameOfGames", (req, res) => {
-//   let nameOfGames = games.map((game) => {
-//     return game.name;
-//   });
-//   res.send(nameOfGames);
-// });
-
-// let newGame = {
-//   name: "Scout",
-//   year: 2024,
-//   id: 9,
-//   company: "Oink games",
-//   type: "Cardbased boardgame",
-//   console: ["Tabletop", "Travel"],
-// };
 
 module.exports = router;
