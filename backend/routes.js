@@ -3,7 +3,9 @@ const router = express.Router();
 const db = require("./dbconnector");
 
 router.get("/", (req, res) => {
-  res.send("Velkommen til mitt spillbibliotek.");
+  res.send(
+    "Velkommen til mitt spillbibliotek. For oversikt over alle spill gå til /games. For en liste med spill gå til /nameofgames."
+  );
 });
 
 //Check DB connection and show all tables
