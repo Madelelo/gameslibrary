@@ -11,54 +11,53 @@
       <h1>Maddes spillbibliotek</h1>
       <div id="game-counter"></div>
 
-      <div id="games-list"></div>
-
-      <div class="games-card">
-        <form action="">
-          <h1>Add new game</h1>
-          <div>
-            Game name:
-            <input type="text" id="new-game-name" placeholder="The game name" />
-          </div>
-          <div>
-            Game year:
-            <input type="number" id="new-game-year" placeholder="2024" />
-          </div>
-          <div>
-            Game type:
-            <input
-              type="text"
-              id="new-game-type"
-              placeholder="Adventure, platform"
-            />
-          </div>
-          <div>
-            Game console:
-            <input type="text" id="new-game-console" placeholder="Switch" />
-          </div>
-          <div>
-            Game company:
-            <input type="text" id="new-game-company" placeholder="Nintendo" />
-          </div>
-          <div>
-            Players:
-            <input
-              type="number"
-              id="new-game-min"
-              placeholder="min"
-              style="width: 40px"
-            />
-            <input
-              type="number"
-              id="new-game-max"
-              placeholder="max"
-              style="width: 40px"
-            />
-          </div>
-
-          <button onclick="addGame()">Add game</button>
-        </form>
+      <div id="games-list">
+        <div class="games-card"></div>
       </div>
+      <form action="" class="add-game-form">
+        <h1>Add new game</h1>
+        <div>
+          Game name:
+          <input type="text" id="new-game-name" placeholder="The game name" />
+        </div>
+        <div>
+          Game year:
+          <input type="number" id="new-game-year" placeholder="2024" />
+        </div>
+        <div>
+          Game type:
+          <input
+            type="text"
+            id="new-game-type"
+            placeholder="Adventure, platform"
+          />
+        </div>
+        <div>
+          Game console:
+          <input type="text" id="new-game-console" placeholder="Switch" />
+        </div>
+        <div>
+          Game company:
+          <input type="text" id="new-game-company" placeholder="Nintendo" />
+        </div>
+        <div>
+          Players:
+          <input
+            type="number"
+            id="new-game-min"
+            placeholder="min"
+            style="width: 40px"
+          />
+          <input
+            type="number"
+            id="new-game-max"
+            placeholder="max"
+            style="width: 40px"
+          />
+        </div>
+
+        <button onclick="addGame()">Add game</button>
+      </form>
     </div>
 
     <script src="script.js"></script>
