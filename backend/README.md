@@ -63,6 +63,22 @@ Eksempel på respons:
 
 **Legg til spill:** `POST /newgame`
 
+Eksempel på request (i terminalen):
+
+```sh
+curl -X POST http://localhost:3000/newgame \
+     -H "Content-Type: application/json" \
+     -d '{
+           "name": "Scout!",
+           "releaseYear": 2022,
+           "gameCompany": "Oink Games",
+           "gameType": "Cardbased boardgame",
+           "gameConsole": ["Tabletop", "Travel"],
+           "maxPlayer": 6,
+           "minPlayer": 2
+         }'
+```
+
 **KOMMER SNART - Hent ett spill:** `GET /api/games/:id`
 
 **KOMMER SNART - Slett spill:** `DELETE /api/games/:id`
@@ -106,7 +122,15 @@ Eksempel på respons:
    ```
 
 4. **Konfigurer database kobling:**
-   Gå inn i filen `dbconnector.js` og endre på passord!
+   Last ned pakken:
+   `npm install mariadb`
+
+   Lag filen db.connector. med flgende kode. Endre til dine passord.
+
+   Inne i app.js legg til.  
+   `const db = require("./dbconnector");`
+
+Du kan nå koble til databasen med
 
 5. **Start serveren:**
    ```sh
