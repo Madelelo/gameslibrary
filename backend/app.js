@@ -1,8 +1,16 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const port = 3000;
 const database = require("./dbconnector.js");
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: "*", // Allows all origins
+    methods: ["GET, POST"], // Allows only GET requests
+  })
+);
 
 app.get("/home", (req, res) => {
   res.send("Hello, Madde!");
