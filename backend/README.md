@@ -132,10 +132,20 @@ curl -X POST http://localhost:3000/newgame \
 Du kan nå koble til databasen ved å kjøre `node dbconnector.js` i terminalen. Denne kjører du bare en gang for å sette opp koblingen, så kan du kjøre serveren.
 
 5. **Start serveren:**
+
    ```sh
-   nodemon app.js
+   node app.js
    ```
-   Serveren kjører nå på `http://localhost:3000` (standardport).
+
+   Serveren kjører nå på `http://localhost:3000` (standardport). Den må stoppes (control+c) og startes på nytt for hver gang du gjør endringer.
+
+TIPS! Sjekk ut nodemon, så slipper du å restarte serveren for hver oppdatering.
+
+```sh
+npm install -g nodemon
+
+#Kjør appen med nodemon app.js
+```
 
 ## Feilsøking
 
