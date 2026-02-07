@@ -11,13 +11,12 @@ Dette er backend-applikasjonen for Madeleines spillbibliotek.
 ## Filer
 
 - **app.js** - Filen som kjører Express-serveren
-- **routes.js** - Filen med alle endepunktene
 - **dbconnector.js** - Filen som kobler til databasen
 - **dbinit.js** - Script som initialiserer databasen med data. Kjøres kun ved behov!
 
 ## API-endepunkter
 
-Du finner kode for endepunktene i `routes.js`
+Du finner kode for endepunktene i `app.js`
 
 **Hent alle spill:** `GET /games`
 
@@ -101,10 +100,10 @@ curl -X POST http://localhost:3000/newgame \
 3. **Sett opp MariaDB:**
    Hvis du ikke har lasta ned og satt opp MariaDB - sjekk ut denne linken.
 
-   Logg inn med passord:
+   Logg inn på din bruker med ditt passord:
 
    ```sh
-   mariadb -u root -p -h localhost
+   mariadb -u <din bruker>> -p -h localhost
    ```
 
    Opprett `gameslibrary` databasen og bruk den:
@@ -125,12 +124,12 @@ curl -X POST http://localhost:3000/newgame \
    Last ned pakken:
    `npm install mariadb`
 
-   Lag filen db.connector. med flgende kode. Endre til dine passord.
+   Lag filen `dbconnector.js` med følgende kode. _Endre til din bruker og ditt passord._
 
-   Inne i app.js legg til.  
+   Inne i `app.js` legg til.  
    `const db = require("./dbconnector");`
 
-Du kan nå koble til databasen med
+Du kan nå koble til databasen ved å kjøre `node dbconnector.js` i terminalen. Denne kjører du bare en gang for å sette opp koblingen, så kan du kjøre serveren.
 
 5. **Start serveren:**
    ```sh
