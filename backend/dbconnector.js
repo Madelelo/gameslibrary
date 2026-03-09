@@ -1,12 +1,13 @@
 //npm install mariadb
-
 const mariadb = require("mariadb");
+require("dotenv").config();
+const envFile = require("dotenv");
 
 const pool = mariadb.createPool({
-  host: "localhost",
-  user: "madde",
-  password: "1234",
-  database: "gameslibrary",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
   connectionLimit: 5,
 });
 
