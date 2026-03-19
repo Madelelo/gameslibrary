@@ -9,7 +9,7 @@ app.use(
   cors({
     origin: "*", // Allows all origins
     methods: ["GET, POST"], // Allows only GET requests
-  })
+  }),
 );
 
 app.get("/home", (req, res) => {
@@ -44,9 +44,11 @@ app.get("/nameofgames", async (req, res) => {
 
 app.post("/newgame", async (req, res) => {
   let newGame = req.body;
-  let query = `INSERT INTO games (name, releaseYear, gameType, gameCompany, gameConsole, maxPlayer, minPlayer) VALUES (${newGame.name}, ${newGame.releaseYear}, ${newGame.gameType}, ${newGame.gameConsole})`;
-
+  console.log(newGame);
+  let query = `INSERT INTO games (name, releaseYear, gameType, gameCompany, gameConsole, maxPlayer, minPlayer)
+VALUES ('${newGame.name}', ${newGame.releaseYear}, '${newGame.gameType}', '${newGame.gameCompany}', '${newGame.gameConsole}', '${newGame.maxPlayer}', '${newGame.minPlayer}');`;
   try {
+    console.log(query);
     let newGame = await database.query(query);
 
     res.send(newGame);
@@ -59,7 +61,7 @@ app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 
-//Kjør i terminalen - HUSK å vær inni riktig mappe:    node app.js
+//Kjør i terminalen - HUSK å vær inni riktig mappe
 
 //Kjør i terminalen:    nodemon app.js
 // //oppdaterer automatisk ved lagret fil
