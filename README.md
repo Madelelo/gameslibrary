@@ -41,11 +41,38 @@ cd gameslibrary/backend
 npm install
 ```
 
-3. Start MariaDB og sørg for at du kan logge inn:
+3. Start MariaDB og opprett en egen bruker med lese-/skrivetilgang:
 
 ```bash
-mariadb -u madde -p -h localhost
+# Logg inn som root (eller en admin-bruker)
+mariadb -u root -p
 ```
+
+Kjør følgende SQL for å opprette databasen og en dedikert bruker på din maskin:
+
+```sql
+CREATE DATABASE IF NOT EXISTS gameslibrary;
+CREATE USER IF NOT EXISTS 'din_bruker'@'localhost' IDENTIFIED BY 'ditt_passord';
+GRANT ALL PRIVILEGES ON *.* TO 'din_bruker'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+```
+
+4. Opprett en `.env`-fil i `backend/`-mappen med databaseinnstillingene (se `backend/.env.example` for mal):
+
+```bash
+cp backend/.env.example backend/.env
+```
+
+Rediger `backend/.env` med dine verdier:
+
+```
+DB_HOST=localhost
+DB_USER=gameslibrary_user
+DB_PASS=ditt_passord
+DB_NAME=gameslibrary
+```
+
+> **NB:** `.env`-filen inneholder sensitiv informasjon og skal **aldri** committes til Git. Den er allerede lagt til i `.gitignore`.
 
 5. Initialiser databasen (kjør kun én gang eller når du vil resette testdata):
 
@@ -55,7 +82,7 @@ node dbinit.js
 
 Dette lager tabellen `games` og fyller den med prøve-data.
 
-6. Start serveren:
+7. Start serveren:
 
 ```bash
 node app.js
@@ -63,9 +90,9 @@ node app.js
 # nodemon app.js
 ```
 
-Serveren lytter som standard på `http://localhost:3000/`.
+Serveren kjører som standard på `http://localhost:3000/`.
 
-7. Åpne frontend: åpne `frontend/index.html` i nettleser.
+8. Åpne frontend: åpne `frontend/index.html` i nettleser.
 
 ---
 
@@ -94,7 +121,6 @@ Eksempel på POST-body:
 
 ## Sikkerhet & kjente forbedringer ⚠️
 
-- **Hardkodede DB-legitimasjoner** finnes i `dbconnector.js` — bytt til miljøvariabler og `.env` i stedet.
 - **SQL-injection**: dagens POST-implementasjon bygger queryer ved å interpolere user-input. Bruk parameteriserte queries (f.eks. `connection.query(sql, params)`) for alle INSERT/UPDATE/DELETE.
 - **Feil i frontend-endpoint-navn**: frontend sender til `newGame` (stor G) mens backend lytter på `/newgame` (liten g). Rett opp path i frontend (`fetch(API_URL + "newgame")`).
 - **Graceful shutdown**: kall `await dbconnector.close()` ved SIGINT/SIGTERM for å lukke pool og la prosessen avslutte pent.
